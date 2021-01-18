@@ -20,21 +20,16 @@ public class Main {
                 directory = args[1];
             }
         }
-        System.err.println(directory);
 
-        System.err.println("crawl dir and subdirs");
         ArrayList allFiles = new ArrayList();
         Files.walk(Paths.get(directory))
              .forEach(allFiles::add);
 
-        System.err.println("compute md5 for all files");
-        System.err.println("write results to csv");
         String outputFilename = "listHash.csv";
         FileWriter myWriter = new FileWriter(outputFilename);
 
         for (Iterator iter = allFiles.iterator(); iter.hasNext(); ) {
             String filename = iter.next().toString();
-            System.err.println(filename);
             if(!Files.isDirectory(Paths.get(filename))) {
                 String hash = MD5.asHex(MD5.getHash(new java.io.File(filename)));
                 myWriter.write("\"" + filename + "\",\"" + hash + "\"\n");
