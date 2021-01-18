@@ -44,5 +44,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-compiler-manager:2.8.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.codehaus.plexus:plexus-compiler-javac:2.8.4" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jopt-simple:jopt-simple:5.0.4" level="project" />
+    <orderEntry type="library" name="Maven: com.twmacinta:fast-md5:2.7.1" level="project" />
   </component>
 </module>
