@@ -15,9 +15,18 @@ public class Main {
 
         System.err.println("determine dir");
         String directory = ".";
-        if(args.length>1) {
-            if("-d".equals(args[0].toString())) {
-                directory = args[1];
+        String outputFilename = "listHash.csv";
+
+        for(int i=0; i< args.length; i++) {
+            if("-d".equals(args[i].toString())) {
+                if(args[i+1]!=null) {
+                    directory = args[i + 1];
+                }
+            }
+            if("-o".equals(args[i].toString())) {
+                if(args[i+1]!=null) {
+                    outputFilename = args[i + 1];
+                }
             }
         }
 
@@ -25,7 +34,6 @@ public class Main {
         Files.walk(Paths.get(directory))
              .forEach(allFiles::add);
 
-        String outputFilename = "listHash.csv";
         FileWriter myWriter = new FileWriter(outputFilename);
 
         for (Iterator iter = allFiles.iterator(); iter.hasNext(); ) {
@@ -34,8 +42,6 @@ public class Main {
                 String hash = MD5.asHex(MD5.getHash(new java.io.File(filename)));
                 myWriter.write("\"" + filename + "\",\"" + hash + "\"\n");
                 myWriter.flush();
-            } else {
-                System.err.println("is dir?");
             }
         }
         myWriter.close();
