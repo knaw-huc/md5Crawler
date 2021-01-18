@@ -1,8 +1,10 @@
 package main.java.nl.knaw.huc.md5Crawler;
 
 
-import joptsimple.OptionParser;
-import joptsimple.OptionSet;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
 
@@ -10,14 +12,20 @@ public class Main {
 
         System.err.println("determine dir");
         String directory = ".";
-        OptionParser parser = new OptionParser("d");
-        OptionSet options = parser.parse(args);
-        if (options.has("f"))
-            directory = (String)options.valueOf("f");
+        if(args.length>1) {
+            if("-d".equals(args[0].toString())) {
+                directory = args[1];
+            }
+        }
+        System.err.println(directory);
 
         System.err.println("crawl dir and subdirs");
-        FileWalker fileWalker = new FileWalker();
-
+        ArrayList allFiles = new ArrayList();
+        Files.walk(Paths.get(directory))
+             .forEach(allFiles::add);
+        for (Iterator iter = allFiles.iterator(); iter.hasNext(); ) {
+            System.err.println(iter.next().toString());
+        }
 
         System.err.println("compute md5 for all files");
         System.err.println("write results to csv");
