@@ -2,6 +2,8 @@ package main.java.nl.knaw.huc.md5Crawler;
 
 
 import com.twmacinta.util.MD5;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -17,17 +19,13 @@ public class Main {
         String directory = ".";
         String outputFilename = "listHash.csv";
 
-        for(int i=0; i< args.length; i++) {
-            if("-d".equals(args[i].toString())) {
-                if(args[i+1]!=null) {
-                    directory = args[i + 1];
-                }
-            }
-            if("-o".equals(args[i].toString())) {
-                if(args[i+1]!=null) {
-                    outputFilename = args[i + 1];
-                }
-            }
+        OptionParser parser = new OptionParser("d:o:?*");
+        OptionSet options = parser.parse(args);
+        if(options.has("d")) {
+            directory = (String)options.valueOf("d");
+        }
+        if(options.has("o")) {
+           outputFilename = (String)options.valueOf("o");
         }
 
         ArrayList allFiles = new ArrayList();
