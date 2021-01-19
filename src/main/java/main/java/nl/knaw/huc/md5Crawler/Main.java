@@ -5,7 +5,6 @@ import com.twmacinta.util.MD5;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,8 +41,12 @@ public class Main {
             String hash = null;
             try {
                 hash = MD5.asHex(MD5.getHash(new java.io.File(String.valueOf(filename))));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
+                System.err.println(String.valueOf(filename)+" caused an Exception");
+            } catch (Error e) {
+                e.printStackTrace();
+                System.err.println(String.valueOf(filename)+" caused an Error");
             }
             myWriter.println("\"" + String.valueOf(filename).replace("\"","\"\"") + "\",\"" + hash + "\"");
         }
