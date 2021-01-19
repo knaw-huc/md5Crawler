@@ -15,7 +15,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        System.err.println("determine dir");
         String directory = ".";
         String outputFilename = "listHash.csv";
 
@@ -38,7 +37,7 @@ public class Main {
             String filename = iter.next().toString();
             if(!Files.isDirectory(Paths.get(filename))) {
                 String hash = MD5.asHex(MD5.getHash(new java.io.File(filename)));
-                myWriter.write("\"" + filename + "\",\"" + hash + "\"\n");
+                myWriter.write("\"" + filename.replace("\"","\"\"") + "\",\"" + hash + "\"\n");
                 myWriter.flush();
             }
         }
