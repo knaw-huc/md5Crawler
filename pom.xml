@@ -19,6 +19,17 @@
           </archive>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.9</version>
+        <configuration>
+          <repository>md5Crawler/${project.artifactId}</repository>
+          <buildArgs>
+            <JAR_FILE>out/artifacts/md5Crawler_jar/md5Crawler.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 

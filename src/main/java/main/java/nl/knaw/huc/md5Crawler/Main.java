@@ -7,6 +7,7 @@ import joptsimple.OptionSet;
 
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -31,9 +32,13 @@ public class Main {
         } else {
             myWriter = new PrintWriter(System.out);
         }
-        Files.walk(Paths.get(directory))
-             .forEach(Main::calcAndPrint);
-        myWriter.close();
+        try {
+            Files.walk(Paths.get(directory))
+                 .forEach(Main::calcAndPrint);
+            myWriter.close();
+        } catch(NoSuchFileException e) {
+            System.err.println("directory " + directory + " does not exists.");
+        }
     }
 
     public static void calcAndPrint(Path filename) {
