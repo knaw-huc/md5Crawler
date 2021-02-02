@@ -7,6 +7,7 @@
     <groupId>groupId</groupId>
     <artifactId>md5Crawler</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <build>
         <plugins>
@@ -24,7 +25,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>main.java.nl.knaw.huc.md5Crawler.Main</mainClass>
+                                    <mainClass>java.nl.knaw.huc.md5Crawler.Main</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
