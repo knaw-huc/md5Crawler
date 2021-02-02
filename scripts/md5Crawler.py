@@ -4,7 +4,7 @@ import glob
 import argparse
 import sys
 import os
-
+from datetime import datetime
 
 
 def stderr(text):
@@ -18,17 +18,22 @@ def arguments():
     return args
     
 
+def end_prog(code=0):
+    stderr(datetime.today().strftime("einde: %H:%M:%S"))
+    sys.exit(code)
+
+
 if __name__ == "__main__":
+    stderr(datetime.today().strftime("start: %H:%M:%S"))
 
     args = arguments()
-#    stderr(args)
     base = args['directory']
-#    stderr(base)
     if not os.path.exists(base):
         stderr("Could not find path: %s"%(base))
-        exit(1)
+        end_prog(1)
 
     all_files = glob.glob(base)
+    teller = 0
     for dirpath, dirs, files in os.walk(base):
         for filename in files:
 	    fname = os.path.abspath(os.path.join(dirpath,filename))
@@ -36,7 +41,8 @@ if __name__ == "__main__":
                 try:
                     hash_res = hashlib.md5(open(fname,'rb').read()).hexdigest()
                     print('"{}","{}"'.format(fname, hash_res))
+                    teller += 1
                 except IOError:
                     stderr('File "{}" caused an IOError'.format(fname))
-
-
+    stderr('Computed hash for {} files in {}'.format(teller,base))
+    end_prog()
