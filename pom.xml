@@ -13,9 +13,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
         <configuration>
           <archive>
-            <useDefaultManifestFile>src/main/resources/META-INF/MANIFEST.MF</useDefaultManifestFile>
+             <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
           </archive>
         </configuration>
       </plugin>
@@ -56,4 +57,12 @@
     </dependency>
   </dependencies>
 
-</project>
+  <repositories>
+        <!-- needed for fast-md5 -->
+        <repository>
+            <id>Geomajas</id>
+            <name>Geomajas repository</name>
+            <url>http://maven.geomajas.org/</url>
+        </repository>
+    </repositories>
+  </project>
