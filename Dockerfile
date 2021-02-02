@@ -13,5 +13,5 @@ RUN cd  md5Crawler && \
     mvn package && \
     cp target/md5Crawler.jar /app/
 
-ENTRYPOINT java -jar md5Crawler.jar -d /app/dir
+ENTRYPOINT ["java","-jar", "md5Crawler.jar"] 
 
