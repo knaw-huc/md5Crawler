@@ -1,4 +1,4 @@
-package nl.knaw.huc.md5Crawler;
+package nl.knaw.huc.md5crawler;
 
 
 import com.twmacinta.util.MD5;
