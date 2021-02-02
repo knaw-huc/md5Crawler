@@ -1,6 +1,5 @@
 package nl.knaw.huc.md5crawler;
 
-
 import com.twmacinta.util.MD5;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
