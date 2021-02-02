@@ -1,7 +1,7 @@
 # md5Crawler
 
 ```sh
-https://raw.githubusercontent.com/knaw-huc/md5Crawler/main/Dockerfile
+docker build -t md5crawler https://raw.githubusercontent.com/knaw-huc/md5Crawler/main/Dockerfile
 ```
 
 ```sh
