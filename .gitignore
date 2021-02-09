@@ -1,0 +1,10 @@
+
+.classpath
+.settings/
+target/
+.vscode/
+.project
+.idea/
+md5Crawler.iml
+*.swp
+**/.DS_Store
